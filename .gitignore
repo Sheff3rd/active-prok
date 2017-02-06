@@ -1,0 +1,17 @@
+#api
+/active-prok-api/public/system
+/active-prok-api/coverage/
+/active-prok-api/spec/tmp
+/active-prok-api/log
+/active-prok-api/tmp
+/active-prok-api/.bundle
+/active-prok-api/vendor/bundle
+/active-prok-api/.byebug_history
+
+#client
+/active-prok-cli/typings
+/active-prok-cli/app/**/*.js
+/active-prok-cli/app/**/*.map
+/active-prok-cli/node_modules
+/active-prok-cli/jspm_packages
+/active-prok-cli/bower_components
