@@ -11,6 +11,9 @@ import {
   NavbarComponent,
   HomeComponent
 } from './components'
+import {
+  ApiService
+} from './services'
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import {
     FormsModule, ReactiveFormsModule,
     appRoutes
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

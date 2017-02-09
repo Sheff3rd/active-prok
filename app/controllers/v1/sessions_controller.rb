@@ -1,6 +1,6 @@
-class SessionsController < ApplicationController
+class V1::SessionsController < V1::BaseController
   def create
-    user = User.find_by_username(user_params[:username])
+    user = User.find_by(username: user_params[:username])
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
       render status: :accepted
@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
   private
 
   def user_params
-    params[:params][:user].permit(:username, :password)
+    params[:user].permit(:username, :password)
   end
 end
