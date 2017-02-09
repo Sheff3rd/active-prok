@@ -8,8 +8,8 @@ export class SessionService {
   constructor(private _http: Http){ }
 
   create(user: User){
-    let params: { user: User  } = { 'user': user };
+    let params: { user: User } = { 'user': user };
     return this._http
-      .post('http://localhost:3000/sessions', JSON.stringify(params));
+      .post('http://localhost:3000/sessions', { params: params });
   }
 }

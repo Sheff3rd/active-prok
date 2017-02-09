@@ -20,8 +20,8 @@ export class LoginComponent{
     private _sessionService: SessionService,
     fb: FormBuilder) {
     this.form = fb.group({
-      'name': [''],
-      'price': ['']
+      'username': [''],
+      'password': ['']
     })
    }
 
