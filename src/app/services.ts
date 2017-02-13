@@ -1,2 +1,1 @@
-export * from './services/session.service'
-export * from './services/api.service'
+export * from './services/redirect.service'

@@ -1,36 +1,48 @@
-<div id="navbar">
-  <nav class="navbar navbar-static-top navbar-inverse">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
+<div id='navbar'>
+  <nav class='navbar navbar-static-top navbar-inverse'>
+    <div class='container-fluid'>
+      <ul class='nav navbar-nav'>
         <li>
-          <a href="">
+          <a routerLink='' id='home'>
             Home
           </a>
         </li>
         <li>
-          <a href="#counterparties">
+          <a routerLink='counterparties' id='counterparties'>
             Counterparties
           </a>
         </li>
         <li>
-          <a href="#articles">
+          <a routerLink='articles' id='articles'>
             Articles
           </a>
         </li>
         <li>
-          <a href="#register">
+          <a routerLink='register' id='register'>
             Register
           </a>
         </li>
         <li>
-          <a href="#reports">
+          <a routerLink='reports' id='reports'>
             Reports
           </a>
         </li>
       </ul>
       <ul class='nav navbar-nav navbar-right'>
+        <li [ngClass]="_tokenService.currentUserData == null ? 'hide' : '' ">
+          <a style=' cursor: pointer' id='profile'>
+            <b>Email:</b> {{_tokenService.currentUserData?.email}}
+          </a>
+        </li>
         <li>
-          <a href='/login'>
+          <a [ngClass]="_tokenService.currentUserData == null ? 'hide' : '' "
+              (click)="logout()"
+              style=' cursor: pointer'
+              id='logout'>
+            Logout
+          </a>
+        <li [ngClass]="_tokenService.currentUserData != null ? 'hide' : '' ">
+          <a routerLink='login' id='login'>
             Login
           </a>
         </li>
