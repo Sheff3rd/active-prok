@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by } from 'protractor/built';
 
 export class ActiveProkCliPage {
   navigateTo() {
@@ -6,6 +6,6 @@ export class ActiveProkCliPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('app-root font')).getText();
   }
 }

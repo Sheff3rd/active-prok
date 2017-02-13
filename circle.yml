@@ -1,0 +1,36 @@
+machine:
+  node:
+    version: 6.9.1
+  environment:
+    DBUS_SESSION_BUS_ADDRESS: /dev/null
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - bundle exec cap production deploy
+
+dependencies:
+  override:
+    - npm install
+    - npm i -g typescript
+    - bundle install
+  cache_directories:
+    - node_modules
+  post:
+    - ./node_modules/.bin/webdriver-manager update
+    - wget http://selenium-release.storage.googleapis.com/3.0-beta4/selenium-server-standalone-3.0.0-beta4.jar -P ./node_modules/webdriver-manager/selenium
+    - ./node_modules/.bin/webdriver-manager start --versions.standalone 3.0.0-beta4:
+        background: true
+
+database:
+  override:
+    - bundle exec rake db:create
+
+test:
+  pre:
+  - npm run dev:
+      background: true
+  - sleep 15
+  override:
+    - npm run e2e
