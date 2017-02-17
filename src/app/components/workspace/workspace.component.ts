@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core'
-import { Workspace } from '../../models/workspace'
+import { Component, OnInit, EventEmitter, Output } from '@angular/core'
 import { Angular2TokenService } from 'angular2-token'
 import { NotificationsService } from 'angular2-notifications'
 
@@ -9,11 +8,12 @@ import { NotificationsService } from 'angular2-notifications'
 })
 
 export class WorkspaceComponent implements OnInit {
-  workspaces: Workspace[]
+  @Output() workspaceChange = new EventEmitter()
+
+  workspaces = []
   user = {}
 
-  currentWorkspaceId = localStorage.getItem('current_workspace')
-  _workspaceSelectDataId = new Workspace('Default')
+  _workspaceSelectData: any = {}
   _workspaceCreateData = {}
 
   constructor(
@@ -24,12 +24,22 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit() {
     this._tokenService.get('workspaces')
       .subscribe(res => { this.workspaces = res.json()
+        this._workspaceSelectData.id = parseInt(localStorage.getItem('currentWorkspaceId'))
       })
   }
 
   onSelect() {
-    if (this._workspaceSelectDataId) {
-      localStorage.setItem('current_workspace', `${this._workspaceSelectDataId}`)
+    if (this._workspaceSelectData) {
+      let prevWorkspaceId = localStorage.getItem('currentWorkspaceId')
+      let params: {} = { 'session': { 'id': this._workspaceSelectData.id, 'type': 'workspace' } };
+
+      localStorage.setItem('currentWorkspaceId', this._workspaceSelectData.id)
+      this._tokenService.post('sessions', params)
+        .subscribe(res => {
+          if (prevWorkspaceId != this._workspaceSelectData.id) {
+            this.workspaceChange.emit(null)
+          }
+        })
     }
   }
 

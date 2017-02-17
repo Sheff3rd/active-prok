@@ -3,7 +3,7 @@ class CreateCounterparties < ActiveRecord::Migration[5.0]
     create_table :counterparties do |t|
       t.belongs_to :workspace, index: true
       t.string :title
-      t.time :date
+      t.datetime :date
       t.string :type
 
       t.timestamps

@@ -1,5 +1,83 @@
-<div>
-  <app-workspace ></app-workspace>
+<div class='container'>
+  <div class='wrapper'>
 
-  <h2> Counterparties </h2>
+    <app-workspace (workspaceChange)="ngOnInit()"> </app-workspace>
+
+    <h2> Counterparties </h2>
+
+    <div class='row'>
+
+      <form
+        class='form-inline'
+        #counterpartyForm="ngForm" (ngSubmit)="onCreate()">
+
+      <input type='text'
+              class='form-control col-md-4'
+              name='name'
+              placeholder='Name'
+              required
+              [(ngModel)]="submitData.name" />
+
+      <input type='date'
+              class='form-control'
+              name='date'
+              placeholder="dd/mm/yyyy"
+              required
+              [(ngModel)]="submitData.date" />
+
+      <select class='form-control'
+              name='type'
+              required
+              [(ngModel)]="submitData.party_type">
+
+        <option *ngFor="let type of types"
+          [ngValue]="type"> {{ type | capitalize }} </option>
+      </select>
+
+      <button
+        class='btn btn-primary'
+        type='submit'> Add </button>
+
+      </form>
+
+    </div>
+
+    <div class='margin container-fluid'>
+      <div class='row'>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th class='col1'> Name </th>
+            <th class='col1'> Date </th>
+            <th> Type </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let counterparty of counterparties'>
+            <td class='col1'> {{counterparty.name}} </td>
+            <td class='col1'> {{counterparty.date | date:'dd-MM-y'}} </td>
+            <td> {{ counterparty.party_type | capitalize }} </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+  </div>
 </div>
