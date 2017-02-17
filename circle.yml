@@ -4,11 +4,11 @@ machine:
   environment:
     DBUS_SESSION_BUS_ADDRESS: /dev/null
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - bundle exec cap production deploy
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       - bundle exec cap production deploy
 
 dependencies:
   override:

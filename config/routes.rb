@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   scope 'api' do
     namespace :v1 do
-      resource :sessions, only: :create
+      mount_devise_token_auth_for 'User', at: 'auth'
+
+      resources :workspaces,       only: [:index, :create, :update]
     end
   end
 end

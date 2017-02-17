@@ -1,36 +1,40 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit }                 from '@angular/core'
+import { Angular2TokenService, SignInData }  from 'angular2-token';
 import { Router } from '@angular/router'
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { User } from '../../models'
-import { SessionService } from '../../services'
 
 @Component({
-  providers: [
-    SessionService
-  ],
   templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  styleUrls:   ['./login.css']
 })
 export class LoginComponent{
-  form: FormGroup;
-  user: User = new User({});
+  private _signInData: SignInData = <SignInData>{}
+  private _output: any
 
   constructor(
     private _router: Router,
-    private _sessionService: SessionService,
-    fb: FormBuilder) {
-    this.form = fb.group({
-      'username': [''],
-      'password': ['']
-    })
-   }
+    private _tokenService: Angular2TokenService){
+      this._tokenService.init({
+        apiBase: 'api/v1',
+        signInPath: 'auth/sign_in'
+      })
+    }
 
+  onSubmit() {
+    this._output = null
 
-  onSubmit(): void {
-    this._sessionService
-      .create(this.user)
-      .subscribe(_ => {
-        this._router.navigate(['']);
-      });
+    this._tokenService.signIn(this._signInData).subscribe(
+      res => {
+        this._signInData    = <SignInData>{};
+        this._output        = res;
+        this.redirect('')
+      }, error => {
+        this._signInData    = <SignInData>{};
+        this._output        = error;
+      }
+    )
+  }
+
+  private redirect(redirectUrl): void {
+    this._router.navigate([ redirectUrl ])
   }
 }

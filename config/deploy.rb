@@ -59,7 +59,7 @@ namespace :npm do
 end
 
 namespace :rails do
-  desc "Tail rails logs from server"
+  desc 'Tail rails logs from server'
   task :tail_log do
     SSHKit.config.output_verbosity = Logger::DEBUG
     on roles(:app) do
@@ -71,7 +71,7 @@ end
 namespace :db do
   task :migrate do
     on roles(:db) do
-      execute "rake db:migrate RAILS_ENV=production"
+      execute 'rake db:migrate RAILS_ENV=production'
     end
   end
 end
@@ -91,4 +91,3 @@ namespace :deploy do
 end
 
 after 'deploy:updating', 'npm:install'
-
