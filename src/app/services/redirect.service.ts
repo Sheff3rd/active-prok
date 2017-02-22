@@ -12,8 +12,8 @@ export class AuthGuard implements CanActivate {
     private   _notifyService: NotificationsService
   ){ }
 
-  canActivate(): Observable<boolean> | boolean {
-    if (!this._tokenService.userSignedIn()) {
+  canActivate(): boolean {
+    if (!this._tokenService.userSignedIn) {
       this._router.navigate(['/login']);
       this._notifyService.alert(
         'Unauthorized user',
@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
       )
       return false;
     }
-
     return true;
   }
 }

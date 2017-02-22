@@ -1,6 +1,6 @@
 import { RouterModule }         from '@angular/router'
 import { AuthGuard }            from './services'
-
+import { Angular2TokenService } from 'angular2-token'
 
 import { AppComponent } from './app.component'
 import {

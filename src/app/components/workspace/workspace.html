@@ -13,14 +13,12 @@
           type='submit'>Select</button>
         <div class='col-sm-10'>
 
-          <select
-            class='form-control'
-            id='workspaces'
-            name='workspaces'
-            [(ngModel)]="_workspaceSelectDataId">
+          <select class='form-control'
+                  name='workspace'
+                  [(ngModel)]="_workspaceSelectData.id">
+
             <option *ngFor="let workspace of workspaces"
-              [value]="workspace.id"
-              [selected]="currentWorkspaceId"> {{workspace.title}} </option>
+              [ngValue]="workspace.id"> {{ workspace.title }} </option>
           </select>
         </div>
       </div>
@@ -49,7 +47,6 @@
 
       </div>
     </form>
-
 
   </div>
 </div>

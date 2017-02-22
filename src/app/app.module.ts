@@ -1,10 +1,11 @@
-import { BrowserModule }  from '@angular/platform-browser';
-import { NgModule }       from '@angular/core';
+import { BrowserModule }  from '@angular/platform-browser'
+import { NgModule }       from '@angular/core'
 import { RouterModule }   from '@angular/router'
 import { appRoutes }      from './app.routes'
+import { AlertModule }    from 'ng2-bootstrap'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { Angular2TokenService }             from 'angular2-token';
+import { Angular2TokenService }             from 'angular2-token'
 import { SimpleNotificationsModule }        from 'angular2-notifications'
 import { AuthGuard }                        from './services'
 import { HttpModule }     from '@angular/http'
@@ -16,7 +17,10 @@ import {
   HomeComponent,
   WorkspaceComponent
 } from './components'
-import { SerializePipe }  from './pipes'
+import {
+  SerializePipe,
+  CapitalizePipe
+} from './pipes'
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { SerializePipe }  from './pipes'
     NavbarComponent,
     HomeComponent,
     WorkspaceComponent,
+    CapitalizePipe,
     SerializePipe
   ],
   imports: [
@@ -33,7 +38,8 @@ import { SerializePipe }  from './pipes'
     HttpModule,
     FormsModule, ReactiveFormsModule,
     appRoutes,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
     Angular2TokenService,

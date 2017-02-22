@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :validatable # ,:recoverable,:confirmable
 
   has_many :workspaces, dependent: :destroy
+  has_many :counterparties, through: :workspaces
   after_create :create_default_workspace
 
   def create_default_workspace

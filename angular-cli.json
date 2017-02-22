@@ -3,6 +3,10 @@
     "version": "1.0.0-beta.28.3",
     "name": "active-prok-cli"
   },
+  "styles": [
+    "styles.css",
+      "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
   "apps": [
     {
       "root": "src",
