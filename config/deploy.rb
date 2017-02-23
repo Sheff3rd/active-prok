@@ -71,7 +71,15 @@ end
 namespace :db do
   task :migrate do
     on roles(:db) do
-      execute 'rake db:migrate RAILS_ENV=production'
+      execute 'bundle exec rake db:migrate RAILS_ENV=production'
+    end
+  end
+end
+
+namespace :db do
+  task :seed do
+    on roles(:db) do
+      execute 'bundle exec rake db:seed RAILS_ENV=production'
     end
   end
 end
