@@ -1,0 +1,65 @@
+<div class='container-fluid'>
+  <div class='wrapper'>
+    <app-workspace> </app-workspace>
+  </div>
+  <div class='wrapper'>
+
+  <h2> Register: </h2>
+
+  <form
+    class='form-horizontal'
+    #registerForm="ngForm" (ngSubmit)="onCreate()">
+    <div class='form-group row'>
+
+      <div class='col-sm-10 margin'>
+        <input type='date'
+                class='form-control mb-2 mr-sm-2 mb-sm-0'
+                name='date'
+                placeholder="dd/mm/yyyy"
+                required
+                [(ngModel)]="submitData.date" />
+      </div>
+
+      <div class='col-sm-10 margin'>
+        <select class='form-control mb-2 mr-sm-2 mb-sm-0'
+                name='article'
+                required
+                [(ngModel)]="submitData.article">
+
+          <option *ngFor="let article of articles"
+            [ngValue]="article"> {{ article.title | capitalize }} </option>
+        </select>
+      </div>
+
+      <div class='col-sm-10 margin'>
+        <select class='form-control mb-2 mr-sm-2 mb-sm-0'
+                name='type'
+                required
+                [(ngModel)]="submitData.counterparty">
+
+          <option *ngFor="let counterparty of counterparties"
+            [ngValue]="counterparty"> {{ counterparty.name | capitalize }} </option>
+        </select>
+      </div>
+
+      <div class='col-sm-10 margin'>
+        <input type='text'
+                class='form-control'
+                name='sum'
+                placeholder='Sum'
+                required
+                [(ngModel)]="submitData.sum" />
+      </div>
+
+      <div class='col-sm-10 margin'>
+        <input type='text'
+                class='form-control '
+                name='note'
+                placeholder='Note'
+                [(ngModel)]="submitData.note" />
+      </div>
+    </div>
+  </form>
+  {{ counterparties | json }}
+  </div>
+</div>

@@ -8,7 +8,6 @@ import { NotificationsService } from 'angular2-notifications'
   styleUrls: ['./counterparties.css']
 })
 export class CounterpartiesComponent implements OnInit {
-  today: number = Date.now()
   types = ['client', 'vendor', 'other']
 
   counterparties: Array<{}>
@@ -17,11 +16,11 @@ export class CounterpartiesComponent implements OnInit {
   constructor(
     public _tokenService: Angular2TokenService,
     private _notifyService: NotificationsService){
+      this.counterparties = []
       this.submitData.party_type = 'client'
   }
 
   ngOnInit(){
-    this.counterparties = []
     this._tokenService.get('counterparties')
       .subscribe(res => { this.counterparties = res.json() })
   }
