@@ -31,6 +31,7 @@ test:
   pre:
   - npm run dev:
       background: true
+  - rails s -d
   - sleep 15
   override:
     - npm run e2e
