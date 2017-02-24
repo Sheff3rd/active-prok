@@ -3,6 +3,9 @@
 
     <app-workspace (workspaceChange)="ngOnInit()"> </app-workspace>
 
+  </div>
+  <div class='wrapper'>
+
     <h2> Counterparties </h2>
 
     <div class='row'>
@@ -12,20 +15,20 @@
         #counterpartyForm="ngForm" (ngSubmit)="onCreate()">
 
       <input type='text'
-              class='form-control col-md-4'
+              class='form-control mb-2 mr-sm-2 mb-sm-0'
               name='name'
               placeholder='Name'
               required
               [(ngModel)]="submitData.name" />
 
       <input type='date'
-              class='form-control'
+              class='form-control mb-2 mr-sm-2 mb-sm-0x'
               name='date'
               placeholder="dd/mm/yyyy"
               required
               [(ngModel)]="submitData.date" />
 
-      <select class='form-control'
+      <select class='form-control mb-2 mr-sm-2 mb-sm-0'
               name='type'
               required
               [(ngModel)]="submitData.party_type">
@@ -35,49 +38,46 @@
       </select>
 
       <button
-        class='btn btn-primary'
+        class='btn btn-secondary'
         type='submit'> Add </button>
 
       </form>
 
     </div>
+  </div>
 
-    <div class='margin container-fluid'>
-      <div class='row'>
+  <div class='margin wrapper'>
+    <div class='box row'>
 
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
+          <a class="nav-link text-muted active" href="#">Client</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link text-muted" href="#">Vendor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link text-muted" href="#">Other</a>
         </li>
       </ul>
 
-      <table class='table table-striped'>
+      <table class='table'>
         <thead>
           <tr>
-            <th class='col1'> Name </th>
-            <th class='col1'> Date </th>
+            <th> Name </th>
+            <th> Date </th>
             <th> Type </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor='let counterparty of counterparties'>
-            <td class='col1'> {{counterparty.name}} </td>
-            <td class='col1'> {{counterparty.date | date:'dd-MM-y'}} </td>
+            <td> {{counterparty.name}} </td>
+             <td> {{counterparty.date | date:'dd-MM-y'}} </td>
             <td> {{ counterparty.party_type | capitalize }} </td>
           </tr>
         </tbody>
       </table>
-      </div>
-    </div>
 
+    </div>
   </div>
 </div>

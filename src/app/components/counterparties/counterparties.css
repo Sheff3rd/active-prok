@@ -2,6 +2,10 @@
   margin-top: 30px;
 }
 
-.col1 {
-  width: 20%;
+.table {
+  border: 1px solid #ddd;
+}
+
+.nav-tabs {
+  border-bottom: none;
 }

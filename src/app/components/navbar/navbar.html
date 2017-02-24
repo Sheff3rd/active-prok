@@ -1,52 +1,57 @@
-<div id='navbar'>
-  <nav class='navbar navbar-static-top navbar-inverse'>
-    <div class='container-fluid'>
-      <ul class='nav navbar-nav'>
-        <li>
-          <a routerLink='' id='home'>
-            Home
-          </a>
+<nav class='navbar navbar-toggleable-md navbar-inverse bg-inverse'>
+  <button
+    class='navbar-toggler navbar-toggler-right collapsed'
+    type='button' data-toggle='collapse'
+    data-target='#navbarColor01'
+    aria-controls='navbarColor01'
+    aria-expanded='false'
+    aria-label='Toggle navigation'>
+    <span class='navbar-toggler-icon'> </span>
+  </button>
+
+  <a class='navbar-brand' routerLink='' id='home'>Home</a>
+
+    <div class='navbar-collapse collapse' id='navbarColor01' aria-expanded='false'>
+      <ul class='navbar-nav mr-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='counterparties' id='counterparties'>Counterparties</a>
         </li>
-        <li>
-          <a routerLink='counterparties' id='counterparties'>
-            Counterparties
-          </a>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='articles' id='articles'>Articles</a>
         </li>
-        <li>
-          <a routerLink='articles' id='articles'>
-            Articles
-          </a>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='register' id='register'>Register</a>
         </li>
-        <li>
-          <a routerLink='register' id='register'>
-            Register
-          </a>
-        </li>
-        <li>
-          <a routerLink='reports' id='reports'>
-            Reports
-          </a>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink='reports' id='reports'>Reports</a>
         </li>
       </ul>
-      <ul class='nav navbar-nav navbar-right'>
-        <li [ngClass]="_tokenService.currentUserData == null ? 'hide' : '' ">
-          <a style=' cursor: pointer' id='profile'>
-            <b>Email:</b> {{_tokenService.currentUserData?.email}}
-          </a>
-        </li>
-        <li>
-          <a [ngClass]="_tokenService.currentUserData == null ? 'hide' : '' "
-              (click)="logout()"
-              style=' cursor: pointer'
-              id='logout'>
-            Logout
-          </a>
-        <li [ngClass]="_tokenService.currentUserData != null ? 'hide' : '' ">
-          <a routerLink='login' id='login'>
-            Login
-          </a>
-        </li>
+      <ul class='nav navbar-nav'>
+
+      <li class='nav-item'>
+      <a
+        *ngIf="_tokenService.currentUserData != null"
+        style='cursor: pointer; margin-right: 20px' id='logout'
+        class='nav-link my-2 my-sm-0'>
+        <b>Email:</b> {{_tokenService.currentUserData?.email}}
+      </a>
+      </li>
+
+      <li class='nav-item'>
+      <button
+        *ngIf="_tokenService.currentUserData != null"
+        (click)="logout()"
+        style='cursor: pointer;' id='profile'
+        class='btn btn-secondary my-2 my-sm-0'>Logout</button>
+      </li>
+
+      <li class='nav-item'>
+      <button
+        *ngIf="_tokenService.currentUserData == null"
+        routerLink='login' id='login'
+        style='cursor: pointer'
+        class='btn btn-secondary my-2 my-sm-0'>Login</button>
+      </li>
       </ul>
     </div>
   </nav>
-</div>

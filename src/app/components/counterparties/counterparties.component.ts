@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Angular2TokenService } from 'angular2-token'
+import { NotificationsService } from 'angular2-notifications'
 
 @Component({
   selector: 'app-counterparties',
@@ -11,27 +12,25 @@ export class CounterpartiesComponent implements OnInit {
   types = ['client', 'vendor', 'other']
 
   counterparties: Array<{}>
-  submitData = {}
+  submitData: any = {}
 
   constructor(
     public _tokenService: Angular2TokenService,
-  ){ }
+    private _notifyService: NotificationsService){
+      this.submitData.party_type = 'client'
+  }
 
   ngOnInit(){
     this.counterparties = []
     this._tokenService.get('counterparties')
-      .subscribe(res => { this.counterparties = res.json()
-    })
+      .subscribe(res => { this.counterparties = res.json() })
   }
 
   onCreate(){
     this._tokenService.post('counterparties', { counterparty: this.submitData })
       .subscribe(res => { this.counterparties.push(res.json())
-                          console.log(res)
                         },
-                 err => { console.log(err) }
+                 err => { this._notifyService.error(err.statusText, err._body) }
       )
-
   }
-
 }

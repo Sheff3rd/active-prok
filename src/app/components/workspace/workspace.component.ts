@@ -24,7 +24,11 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit() {
     this._tokenService.get('workspaces')
       .subscribe(res => { this.workspaces = res.json()
-        this._workspaceSelectData.id = parseInt(localStorage.getItem('currentWorkspaceId'))
+        if (localStorage.getItem('currentWorkspaceId')) {
+          this._workspaceSelectData.id = parseInt(localStorage.getItem('currentWorkspaceId'))
+        } else {
+          this._workspaceSelectData = this.workspaces[0]
+        }
       })
   }
 
