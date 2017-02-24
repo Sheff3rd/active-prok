@@ -1,52 +1,46 @@
-<div class='container'>
-  <div class='wrapper'>
+<form
+  class='form-horizontal'
+  #workspaceSelectForm="ngForm" (ngSubmit)="onSelect()">
 
-    <form
-      class='form-horizontal'
-      #workspaceSelectForm="ngForm" (ngSubmit)="onSelect()">
+  <label for='workspaces' class='form-control-label bold'><strong> Select workspace: </strong></label>
+  <div class='form-group row'>
 
-      <label for='workspaces'> Select workspace: </label>
-      <div class='form-group'>
+    <button
+      class='btn btn-secondary col-sm-2'
+      type='submit'>Select</button>
+    <div class='col-sm-10'>
 
-        <button
-          class='btn btn-primary col-sm-1'
-          type='submit'>Select</button>
-        <div class='col-sm-10'>
+      <select class='form-control'
+              name='workspace'
+              [(ngModel)]="_workspaceSelectData.id">
 
-          <select class='form-control'
-                  name='workspace'
-                  [(ngModel)]="_workspaceSelectData.id">
+        <option *ngFor="let workspace of workspaces"
+          [ngValue]="workspace.id"> {{ workspace.title }} </option>
+      </select>
+    </div>
+  </div>
+</form>
 
-            <option *ngFor="let workspace of workspaces"
-              [ngValue]="workspace.id"> {{ workspace.title }} </option>
-          </select>
-        </div>
-      </div>
-    </form>
+<form
+  class='form-horizontal'
+  #workspaceForm="ngForm" (ngSubmit)="onCreate()">
 
-    <form
-      class='form-horizontal'
-      #workspaceForm="ngForm" (ngSubmit)="onCreate()">
+  <div class='form-group row'>
 
-      <div class='form-group'>
+    <button
+      class='btn btn-secondary col-sm-2'
+      [disabled]="!workspaceForm.form.valid"> Create </button>
+    <div class='col-sm-10'>
 
-        <button
-          class='btn btn-primary col-sm-1'
-          [disabled]="!workspaceForm.form.valid"> Create </button>
-        <div class='col-sm-10'>
+      <input type='text'
+        class='form-control'
+        placeholder='Create new workspace'
+        name='title'
+        required
+        autofocus
+        [(ngModel)]="_workspaceCreateData.title" />
 
-          <input type='text'
-            class='form-control'
-            placeholder='Create new workspace'
-            name='title'
-            required
-            autofocus
-            [(ngModel)]="_workspaceCreateData.title" />
-
-        </div>
-
-      </div>
-    </form>
+    </div>
 
   </div>
-</div>
+</form>

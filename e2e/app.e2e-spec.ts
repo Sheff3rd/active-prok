@@ -10,16 +10,11 @@ describe('active-prok-cli App', () => {
 
   it('should display site title', () => {
     page.navigateTo()
-    expect(page.getParagraphText()).toEqual('Active accounting')
+    expect(page.getParagraphText()).toEqual('Active-Accounting')
   })
-
-  // it('should redirect if unauthorized'), () => {
-    // element(by.id('first')).click();
-    // expect(page.getParagraphText()).toEqual('Unauthorized')
-  // })
 
   it('should redirect unauthorized users', () => {
     element(by.id('reports')).click()
-    expect(page.getParagraphText()).toEqual('Active accounting')
+    setTimeout(() => { expect(page.getParagraphText()).toEqual('Please sign in') }, 2000)
   })
 })

@@ -2,7 +2,11 @@ class V1::CounterpartiesController < V1::BaseController
   before_action :authenticate_v1_user!
 
   def index
-    counterparties = current_workspace.counterparties.all
+    if current_workspace
+      counterparties = current_workspace.counterparties.all
+    else
+      counterparties = current_v1_user.workspaces.find_by(title: 'Default').counterparties.all
+    end
     render json: counterparties, status: :ok
   end
 
