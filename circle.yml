@@ -4,12 +4,6 @@ machine:
   environment:
     DBUS_SESSION_BUS_ADDRESS: /dev/null
 
-# deployment:
-#   production:
-#     branch: master
-#     commands:
-#       - bundle exec cap production deploy
-
 dependencies:
   override:
     - npm install
@@ -26,12 +20,14 @@ dependencies:
 database:
   override:
     - bundle exec rake db:create
+    - bundle exec rake db:migrate
+    - bundle exec rake db:seed
 
 test:
   pre:
   - npm run dev:
       background: true
-  - rails s -d
+  - rails s -d -e test
   - sleep 15
   override:
     - npm run e2e
