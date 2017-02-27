@@ -15,6 +15,7 @@ import {
   LoginComponent,
   NavbarComponent,
   HomeComponent,
+  RegisterComponent,
   WorkspaceComponent
 } from './components'
 import {
@@ -29,6 +30,7 @@ import {
     LoginComponent,
     NavbarComponent,
     HomeComponent,
+    RegisterComponent,
     WorkspaceComponent,
     CapitalizePipe,
     SerializePipe

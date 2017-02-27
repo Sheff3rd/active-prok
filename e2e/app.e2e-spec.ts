@@ -1,20 +1,32 @@
 import { ActiveProkCliPage } from './app.po'
-import { element, by } from 'protractor'
+import { element, by, protractor } from 'protractor'
 
 describe('active-prok-cli App', () => {
   let page: ActiveProkCliPage
 
   beforeEach(() => {
     page = new ActiveProkCliPage()
+    page.get('/')
+    page.sync()
   })
 
   it('should display site title', () => {
-    page.navigateTo()
-    expect(page.getParagraphText()).toEqual('Active-Accounting')
+    expect(page.match('app-root font')).toEqual('Active-Accounting')
   })
 
   it('should redirect unauthorized users', () => {
-    element(by.id('reports')).click()
-    setTimeout(() => { expect(page.getParagraphText()).toEqual('Please sign in') }, 2000)
+    page.find('reports').click()
+    page.sync()
+    expect(page.match('app-root')).toContain('Please sign in')
+  })
+
+  it('should login', () => {
+    page.find('login').click()
+    page.find('email').sendKeys('sheff3rd@gmail.com')
+    page.find('password').sendKeys('password')
+    page.find('sign-in-form').click()
+
+    page.waitFor('logout') // wait for page to load
+    expect(page.match('app-root')).toContain('Successfully signed in')
   })
 })

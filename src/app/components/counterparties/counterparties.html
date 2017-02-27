@@ -6,7 +6,7 @@
   </div>
   <div class='wrapper'>
 
-    <h2> Counterparties </h2>
+    <h2> Counterparties: </h2>
 
     <div class='row'>
 
@@ -14,19 +14,19 @@
         class='form-inline'
         #counterpartyForm="ngForm" (ngSubmit)="onCreate()">
 
+      <input type='date'
+              class='form-control mb-2 mr-sm-2 mb-sm-0'
+              name='date'
+              placeholder="dd/mm/yyyy"
+              required
+              [(ngModel)]="submitData.date" />
+
       <input type='text'
               class='form-control mb-2 mr-sm-2 mb-sm-0'
               name='name'
               placeholder='Name'
               required
               [(ngModel)]="submitData.name" />
-
-      <input type='date'
-              class='form-control mb-2 mr-sm-2 mb-sm-0x'
-              name='date'
-              placeholder="dd/mm/yyyy"
-              required
-              [(ngModel)]="submitData.date" />
 
       <select class='form-control mb-2 mr-sm-2 mb-sm-0'
               name='type'

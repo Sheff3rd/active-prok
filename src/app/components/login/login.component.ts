@@ -1,6 +1,7 @@
 import { Component, OnInit }                 from '@angular/core'
-import { Angular2TokenService, SignInData }  from 'angular2-token';
-import { Router } from '@angular/router'
+import { Router }                            from '@angular/router'
+import { Angular2TokenService, SignInData }  from 'angular2-token'
+import { NotificationsService }              from 'angular2-notifications'
 
 @Component({
   templateUrl: './login.html',
@@ -12,7 +13,8 @@ export class LoginComponent{
 
   constructor(
     private _router: Router,
-    private _tokenService: Angular2TokenService){
+    private _tokenService: Angular2TokenService,
+    private _notifyService: NotificationsService){
       this._tokenService.init({
         apiBase: 'api/v1',
         signInPath: 'auth/sign_in'
@@ -27,6 +29,7 @@ export class LoginComponent{
         this._signInData    = <SignInData>{};
         this._output        = res;
         this.redirect('')
+        this._notifyService.success('Successfully signed in', '')
       }, error => {
         this._signInData    = <SignInData>{};
         this._output        = error;
