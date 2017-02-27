@@ -26,7 +26,7 @@ describe('active-prok-cli App', () => {
     page.find('password').sendKeys('password')
     page.find('sign-in-form').click()
 
-    setTimeout(() => { page.sync() }, 1000)
+    page.waitFor('logout') // wait for page to load
     expect(page.match('app-root')).toContain('Successfully signed in')
   })
 })

@@ -16,4 +16,13 @@ export class ActiveProkCliPage {
   match(elem: string): any {
     return element(by.css(elem)).getText()
   }
+
+  waitFor(elem: string): any {
+    return browser.wait(function() {
+      return element(by.id(elem)).isPresent()
+        .then(function (isPresent) {
+          return true
+      })
+    })
+  }
 }
